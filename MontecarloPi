@@ -1,0 +1,25 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        int numPoints = 1000000;
+        double piEstimate = MonteCarloPi(numPoints);
+        Console.WriteLine($"Aproximación de π con {numPoints} puntos: {piEstimate}");
+    }
+    static double MonteCarloPi(int numPoints)
+    {
+        Random random = new Random();
+        int insideCircle = 0;
+        for (int i = 0; i < numPoints; i++)
+        {
+            double x = random.NextDouble() * 2 - 1;
+            double y = random.NextDouble() * 2 - 1;
+            if (x * x + y * y <= 1)
+            {
+                insideCircle += 1;
+            }
+        }
+        return (double)insideCircle / numPoints * 4;
+    }
+}
